@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        /* Navigation bar styles */
+        #navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Style for the horizontal lines */
+        hr {
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+
+        /* Style for the form container */
+        #formContainer {
+            margin: 20px;
+            text-align: left;
+        }
+
+        /* Style for the proceed button */
+        #proceedButton {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for the form sections */
+        .formSection {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div id="navbar">
+  <div id="previousButton" onclick="goBack()">&#9665; Previous</div>
+  <div id="pageTitle">Book a Chef</div>
+  <div id="cancelButton" onclick="confirmCancel()">Cancel</div>
+</div>
+
+<!-- Horizontal line -->
+<hr>
+
+<!-- Form container -->
+<div id="formContainer">
+  <form action="{/requirement}" method="post" onsubmit="return validateForm()">
+  <!-- Select Requirement Section -->
+  <div class="formSection">
+    <h2>Select Requirement</h2>
+    <label for="selectRequirement">Select Requirement:</label>
+    <select id="selectRequirement" name="occasion">
+      <option value="birthdayParty">Birthday Party</option>
+      <option value="invitingGuests">Inviting Guests</option>
+      <option value="kidsParty">Kids Party</option>
+      <option value="poojaAtHome">Pooja at Home</option>
+      <option value="anniversary">Anniversary</option>
+      <option value="otherOccasion">Other Occasion</option>
+    </select>
+  </div>
+
+  <!-- Select Date Section -->
+  <div class="formSection">
+    <h2>Select Date</h2>
+    <label for="selectDate">Select Date:</label>
+    <input type="date" id="selectDate" name="date" min="2023-01-01" required>
+  </div>
+
+  <!-- Select Meals Section -->
+  <div class="formSection">
+    <h2>Select Meals</h2>
+    <label for="selectMeals">Select Meals:</label>
+    <select id="selectMeals" name="meal">
+      <option value="breakfast">Breakfast</option>
+      <option value="lunch">Lunch</option>
+      <option value="dinner">Dinner</option>
+    </select>
+
+    <!-- Additional elements based on the selected meal -->
+    <div id="mealDetails"></div>
+  </div>
+
+  <!-- Select Cuisines Section -->
+  <div class="formSection">
+    <h2>Select Cuisines</h2>
+    <label for="selectCuisines">Select Cuisines:</label>
+    <select id="selectCuisines" name="cuisine">
+      <option value="northIndian">North Indian</option>
+      <option value="southIndian">South Indian</option>
+      <option value="gujarati">Gujarati</option>
+      <option value="chinese">Chinese</option>
+      <option value="thai">Thai</option>
+      <option value="continental">Continental</option>
+      <option value="italian">Italian</option>
+      <option value="menuNotDecided">Menu Not Decided</option>
+    </select>
+  </div>
+
+  <!-- Number of Gas Burners Section -->
+  <div class="formSection">
+    <h2>Number of Gas Burners</h2>
+    <label for="selectGasBurners">Number of Gas Burners in Your Kitchen:</label>
+    <select id="selectGasBurners" name="gasBurnerCount">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+  </div>
+  </form>
+</div>
+
+<!-- Horizontal line -->
+<hr>
+<!-- Footer -->
+<div id="footer">
+  <p>Need help? Call on 9876555550</p>
+</div>
+<!-- Proceed button -->
+<button id="proceedButton" onclick="proceedToNextPage()">Proceed</button>
+
+<script>
+        // Function to navigate back
+        function goBack() {
+            history.back();
+        }
+
+        // Function to confirm cancellation
+        function confirmCancel() {
+            var response = confirm("Do you really want to cancel?");
+            if (response) {
+                // Redirect to the Book Now page after confirming cancellation
+                window.location.href = "book.html";
+            }
+        }
+
+        // Function to handle changes in the selected meals
+        document.getElementById("selectMeals").addEventListener("change", function () {
+            var selectedMeal = this.value;
+            var mealDetailsContainer = document.getElementById("mealDetails");
+
+            // Clear previous meal details
+            mealDetailsContainer.innerHTML = "";
+
+            if (selectedMeal === "breakfast" || selectedMeal === "lunch" || selectedMeal === "dinner") {
+                var startElement = document.createElement("label");
+                startElement.textContent = "Start having " + selectedMeal + " from:";
+                mealDetailsContainer.appendChild(startElement);
+
+                var selectTime = document.createElement("select");
+                selectTime.innerHTML = '<option value="8am">8 am onwards</option>' +
+                                       '<option value="9am">9 am onwards</option>' +
+                                       '<option value="10am">10 am onwards</option>' +
+                                       '<option value="12pm">12 pm onwards</option>' +
+                                       '<option value="1pm">1 pm onwards</option>' +
+                                       '<option value="2pm">2 pm onwards</option>' +
+                                       '<option value="8pm">8 pm onwards</option>' +
+                                       '<option value="9pm">9 pm onwards</option>' +
+                                       '<option value="10pm">10 pm onwards</option>';
+                mealDetailsContainer.appendChild(selectTime);
+            }
+        });
+
+        // Function to proceed to the next page
+        function proceedToNextPage() {
+            // Add code to navigate to the next page
+            alert("Proceeding to the next page!");
+            window.location.href = "breakfast.html";
+        }
+    </script>
+
+</body>
+</html>

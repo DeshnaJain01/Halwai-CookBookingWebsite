@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summary Page</title>
+  <style>
+         body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        /* Navigation bar styles */
+        #navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* Style for the form container */
+        #formContainer {
+            margin: 20px;
+            text-align: left;
+        }
+
+        /* Style for the proceed button */
+        #proceedButton {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for form sections */
+        .formSection {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+
+        .dropdown-menu {
+            min-width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            padding: 0.25rem 1.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #212529;
+            text-decoration: none;
+            background-color: #fff;
+        }
+
+        .dropdown-item:hover, .dropdown-item:focus {
+            color: #1e2125;
+            text-decoration: none;
+            background-color: #f8f9fa;
+        }
+
+        /* Additional style for form sections */
+        .formSection {
+            margin-bottom: 20px;
+        }
+
+        /* Additional style for form groups */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        /* Additional style for form controls */
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div id="navbar">
+  <div id="previousButton" onclick="goBack()">&#9665; Previous</div>
+  <div id="pageTitle"><h2>Summary</h2></div>
+  <div id="cancelButton" onclick="confirmCancel()">Cancel</div>
+</div>
+
+<!-- Summary container -->
+<div id="summaryContainer">
+  <div class="formSection">
+
+    <h2>Booking ID: <span id="bookingId"></span></h2>
+    <h3>Details from Requirement Page:</h3>
+    <!-- Display details from Requirement Page -->
+    <p>Select Requirement: <span id="reqType"></span></p>
+    <p>Select Date: <span id="reqDate"></span></p>
+    <p>Select Meals: <span id="reqMeals"></span></p>
+    <p>Select Cuisines: <span id="reqCuisines"></span></p>
+    <p>No. of Gas Burners: <span id="reqBurners"></span></p>
+  </div>
+
+  <div class="formSection">
+    <h3>Details from Number Page:</h3>
+    <!-- Display details from Number Page -->
+    <p>Mobile Number: <span id="mobNumber"></span></p>
+    <p>Address: <span id="address"></span></p>
+  </div>
+
+  <!-- Payment section -->
+  <div class="formSection">
+    <h3>Payment</h3>
+    <p>Total Amount: $100.00</p>
+    <p>Payment Gateway: <!-- Add your payment gateway link here --><a href="#">Proceed to Payment</a></p>
+  </div>
+</div>
+
+<!-- Footer: Need help? -->
+<div id="footer">
+  Need help? Call on 9876555550
+</div>
+
+<script>
+        // Function to navigate back
+        function goBack() {
+            history.back();
+        }
+
+        // Function to confirm cancellation
+        function confirmCancel() {
+            var response = confirm("Do you really want to cancel?");
+            if (response) {
+                // Redirect to the Book Now page after confirming cancellation
+                window.location.href = "book.html";
+            }
+        }
+
+        // Retrieve details from local storage and display in summary
+        document.getElementById("reqType").innerText = localStorage.getItem("reqType");
+        document.getElementById("reqDate").innerText = localStorage.getItem("reqDate");
+        document.getElementById("reqMeals").innerText = localStorage.getItem("reqMeals");
+        document.getElementById("reqCuisines").innerText = localStorage.getItem("reqCuisines");
+        document.getElementById("reqBurners").innerText = localStorage.getItem("reqBurners");
+        document.getElementById("mobNumber").innerText = localStorage.getItem("mobNumber");
+        document.getElementById("address").innerText = localStorage.getItem("address");
+
+        window.onload = function() {
+    var bookingId = Math.floor(Math.random() * 1000000000);
+    document.getElementById('bookingId').innerText = bookingId;
+};
+    </script>
+
+</body>
+</html>

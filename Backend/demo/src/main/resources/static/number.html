@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Mobile Number</title>
+  <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        /* Navigation bar styles */
+        #navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* Style for the form container */
+        #formContainer {
+            margin: 20px;
+            text-align: left;
+        }
+
+        /* Style for the proceed button */
+        #proceedButton {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for form sections */
+        .formSection {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+
+        .dropdown-menu {
+            min-width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            padding: 0.25rem 1.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #212529;
+            text-decoration: none;
+            background-color: #fff;
+        }
+
+        .dropdown-item:hover, .dropdown-item:focus {
+            color: #1e2125;
+            text-decoration: none;
+            background-color: #f8f9fa;
+        }
+        /* Additional style for form sections */
+        .formSection {
+            margin-bottom: 20px;
+        }
+
+        /* Additional style for form groups */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        /* Additional style for form controls */
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div id="navbar">
+  <div id="previousButton" onclick="goBack()">&#9665; Previous</div>
+  <div id="pageTitle"><h2>Enter Personal Details</h2></div>
+  <div id="cancelButton" onclick="confirmCancel()">Cancel</div>
+</div>
+
+<!-- Form container -->
+<div id="formContainer">
+  <form action="{/number}" method="post" onsubmit="return validateForm()">
+    <!-- Mobile Number input -->
+    <div class="formSection">
+      <label for="mob">Mobile:</label><br>
+      <input type="tel" class="form-control" id="mob" name="mob" maxlength="10" pattern="[0-9]{10}" title="Please enter a valid 10-digit number" required><br>
+      <span class="error-message" id="mobError"></span>
+    </div>
+    <!-- Address details -->
+    <div class="formSection">
+      <div class="form-group">
+        <label for="addressLine1">Address Line 1:</label>
+        <input type="text" class="form-control" id="addressLine1" name="addressLine1" required>
+      </div>
+      <div class="form-group">
+        <label for="addressLine2">Address Line 2:</label>
+        <input type="text" class="form-control" id="addressLine2" name="addressLine2">
+      </div>
+      <div class="form-group">
+        <label for="landmark">Landmark:</label>
+        <input type="text" class="form-control" id="landmark" name="landmark">
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" class="form-control" id="city" name="city" required>
+      </div>
+      <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" class="form-control" id="state" name="state" required>
+      </div>
+      <div class="form-group">
+        <label for="pincode">Pincode:</label>
+        <input type="text" class="form-control" id="pincode" name="pincode" pattern="[0-9]{6}" title="Please enter a valid 6-digit pincode" required>
+      </div>
+    </div>
+    <!-- Proceed button -->
+    <button id="proceedButton" type =" button" onclick="proceedToNextPage()">Proceed</button>
+  </form>
+</div>
+
+<!-- Footer: Need help? -->
+<div id="footer">
+  Need help? Call on 9876555550
+</div>
+
+<script>
+        // Function to validate mobile number
+        function validateMobileNumber() {
+            var mobileNumber = document.getElementById("mob").value;
+            var mobError = document.getElementById("mobError");
+
+            if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
+                mobError.textContent = "Please enter a valid 10-digit number";
+                return false;
+            } else {
+                mobError.textContent = "";
+                return true;
+            }
+        }
+
+        // Function to validate address details
+        function validateAddressDetails() {
+            // You can add more specific validation logic if needed
+            return true;
+        }
+
+        // Function to validate the entire form
+        function validateForm() {
+            return validateMobileNumber() && validateAddressDetails();
+        }
+
+        // Function to navigate back
+        function goBack() {
+            history.back();
+        }
+
+        // Function to confirm cancellation
+        function confirmCancel() {
+            var response = confirm("Do you really want to cancel?");
+            if (response) {
+                // Redirect to the Book Now page after confirming cancellation
+                window.location.href = "book.html";
+            }
+        }
+
+
+
+        // Function to proceed to the next page
+        function proceedToNextPage() {
+            // Validate form before proceeding
+            if (validateForm()) {
+
+
+                // Add code to navigate to the next page
+                alert("Proceeding to the next page!");
+                 window.location.href = "requirement.html";
+            }
+        }
+    </script>
+
+</body>
+</html>

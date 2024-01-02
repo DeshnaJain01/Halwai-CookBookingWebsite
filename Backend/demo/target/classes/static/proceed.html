@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>proceed</title>
+</head>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        /* Navigation bar styles */
+        #navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #cancelButton {
+            cursor: pointer;
+        }
+
+        /* Style for the horizontal lines */
+        hr {
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+
+        /* Style for the detailed content page */
+        #detailedContent {
+            margin: 20px;
+            text-align: left;
+        }
+
+        /* Style for the footer */
+        #footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        /* Style for the proceed button */
+        #proceedButton {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div id="navbar">
+    <div id="previousButton" onclick="goBack()">&#9665; Previous</div>
+    <div id="pageTitle">Book a Chef</div>
+    <div id="cancelButton" onclick="confirmCancel()">Cancel</div>
+</div>
+
+<!-- Horizontal line -->
+<hr>
+
+<!-- Detailed content page -->
+<div id="detailedContent">
+    <h2>How it Works:</h2>
+    <p>Select Menu</p>
+    <p>Ingredient List is shared</p>
+    <p>Chef and assistant arrive on time</p>
+    <p>Food is cooked hot and fresh</p>
+    <p>Chef cleans the kitchen and then leaves</p>
+</div>
+
+<!-- Horizontal line -->
+<hr>
+
+<!-- Footer -->
+<div id="footer">
+    <p>Need help? Call on 9876555550</p>
+</div>
+
+<!-- Proceed button -->
+<button id="proceedButton" onclick="proceedToNextPage()">Proceed</button>
+
+<script>
+        // Function to navigate back
+        function goBack() {
+            history.back();
+        }
+
+        // Function to confirm cancellation
+        function confirmCancel() {
+        var response = confirm("Do you really want to cancel?");
+        if (response) {
+            // Redirect to the Book Now page after confirming cancellation
+            window.location.href = "book.html";
+        }
+    }
+
+        // Function to proceed to the next page
+        function proceedToNextPage() {
+            // Add code to navigate to the next page
+            alert("Proceeding to the next page!");
+            window.location.href = "number.html";
+        }
+    </script>
+
+</body>
+</html>
+
+

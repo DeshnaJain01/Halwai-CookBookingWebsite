@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        /* Navigation bar styles */
+        #navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Style for the horizontal lines */
+        hr {
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+
+        /* Style for the form container */
+        #formContainer {
+            margin: 20px;
+            text-align: left;
+        }
+
+        /* Style for the proceed button */
+        #proceedButton {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for form sections */
+        .formSection {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div id="navbar">
+  <div id="previousButton" onclick="goBack()">&#9665; Previous</div>
+  <div id="pageTitle">Select Dinner Menu</div>
+  <div id="cancelButton" onclick="confirmCancel()">Cancel</div>
+</div>
+
+<!-- Horizontal line -->
+<hr>
+
+<!-- Form container -->
+<div id="formContainer">
+  <form action="{/dinner}" method="post" onsubmit="return validateForm()">
+  <!-- No. of people for breakfast -->
+  <div class="formSection">
+    <label for="selectPeople">No. of People for Dinner:</label>
+    <select id="selectPeople" name = "peopleCount">
+      <!-- Options ranging from 1 to 100 in increments of 5 -->
+    </select>
+  </div>
+
+  <!-- Breakfast options -->
+  <div class="formSection">
+    <label for="selectBreakfast">Appetizer:</label>
+    <select id="selectBreakfast" name = "dinner">
+      <option value="dahiKeKabab">Dahi Ke Kabab</option>
+      <option value="manchurian">Manchurian</option>
+      <option value="sabudanaVada">Sabudana Vada</option>
+      <option value="paneerTikka">Paneer Tikka</option>
+
+    </select>
+  </div>
+
+  <div class="formSection">
+    <label for="selectBreakfast">Main Course:</label>
+    <select id="selectMainCourse" name = "mainCourse">
+      <option value="paneerSabji">Paneer Sabji</option>
+      <option value="greenVegetable">Green Vegetable</option>
+      <option value="sizzler">Sizzler</option>
+      <option value="daal">Daal</option>
+
+    </select>
+  </div>
+  <div class="formSection">
+    <label for="selectBreakfast">Breads and Rice:</label>
+    <select id="selectBreads" name = "breads">
+      <option value="roti">Roti</option>
+      <option value="pudi">Pudi</option>
+      <option value="paratha">paratha</option>
+      <option value="rice">Rice</option>
+
+    </select>
+  </div>
+  <!-- Dessert options (Optional) -->
+  <div class="formSection">
+    <label for="selectDessert">Dessert (Optional):</label>
+    <select id="selectDessert" name = "dessert">
+      <option value="kheer">Kheer</option>
+      <option value="chocolateMuffin">Chocolate Muffin</option>
+      <option value="cheesecake">Cheesecake</option>
+      <!-- Add more dessert options as needed -->
+    </select>
+  </div>
+
+  <!-- Soups and Beverages options (Optional) -->
+  <div class="formSection">
+    <label for="selectSoupsBeverages">Soups and Beverages (Optional):</label>
+    <select id="selectSoupsBeverages" name = "beverages">
+      <option value="Soup"> Soup</option>
+      <option value="tea"> Tea</option>
+      <option value="coffee"> Coffee</option>
+      <option value="lassi"> Lassi</option>
+      <option value="fruitSmoothie">Fruit Smoothie</option>
+      <!-- Add more options as needed -->
+    </select>
+  </div>
+  </form>
+</div>
+
+<!-- Horizontal line -->
+<hr>
+
+<!-- Footer: Need help? -->
+<div id="footer">
+  Need help? Call on 9876555550
+</div>
+
+<!-- Proceed button -->
+<button id="proceedButton" onclick="proceedToNextPage()">Proceed</button>
+
+<script>
+        // Function to navigate back
+        function goBack() {
+            history.back();
+        }
+
+        // Function to confirm cancellation
+        function confirmCancel() {
+            var response = confirm("Do you really want to cancel?");
+            if (response) {
+                // Redirect to the Book Now page after confirming cancellation
+                window.location.href = "book.html";
+            }
+        }
+
+        // Function to generate options for the "No. of People for Breakfast" dropdown
+        function generatePeopleOptions() {
+            var selectPeople = document.getElementById("selectPeople");
+
+            for (var i = 1; i <= 100; i += 5) {
+                var option = document.createElement("option");
+                option.value = i;
+                option.text = i;
+                selectPeople.add(option);
+            }
+        }
+
+        // Function to proceed to the next page
+        function proceedToNextPage() {
+            // Add code to navigate to the next page (Lunch page)
+            alert("Proceeding to the Lunch page!");
+                window.location.href = "summary.html";
+        }
+
+        // Generate options when the page loads
+        generatePeopleOptions();
+    </script>
+
+</body>
+</html>

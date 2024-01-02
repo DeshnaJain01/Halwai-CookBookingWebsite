@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 1500px; /* Added height to create a scrollable area */
+        }
+
+        /* Style for the fixed "BOOK NOW" button */
+        #bookNowButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: yellow;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style for the content area */
+        #content {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fixed "BOOK NOW" button HTML -->
+
+<button  id="bookNowButton" onclick="navigateToProceedPage()">BOOK NOW</button>
+</body>
+<script>
+    // Function to navigate to the Proceed page
+    function navigateToProceedPage() {
+        window.location.href = "proceed.html";
+    }
+</script>
+
+</html>
